@@ -1,8 +1,11 @@
-/* Change the code reference from https://github.com/ElemeFE/element/blob/dev/src/utils/dom.js*/
+/* istanbul ignore next */
 
-// const SPECIAL_CHARS_REGEXP = /([]+(.))/g;
-// const MOZ_HACK_REGEXP = /^moz([A-Z])/;
-const ieVersion = Number(document.documentMode);
+import Vue from "vue";
+
+const isServer = Vue.prototype.$isServer;
+const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
+const MOZ_HACK_REGEXP = /^moz([A-Z])/;
+const ieVersion = isServer ? 0 : Number(document.documentMode);
 
 /* istanbul ignore next */
 const trim = function(string) {
@@ -10,17 +13,16 @@ const trim = function(string) {
 };
 /* istanbul ignore next */
 const camelCase = function(name) {
-  return name;
-  // return name
-  //   .replace(SPECIAL_CHARS_REGEXP, function(_, separator, letter, offset) {
-  //     return offset ? letter.toUpperCase() : letter;
-  //   })
-  //   .replace(MOZ_HACK_REGEXP, "Moz$1");
+  return name
+    .replace(SPECIAL_CHARS_REGEXP, function(_, separator, letter, offset) {
+      return offset ? letter.toUpperCase() : letter;
+    })
+    .replace(MOZ_HACK_REGEXP, "Moz$1");
 };
 
 /* istanbul ignore next */
 export const on = (function() {
-  if (document.addEventListener) {
+  if (!isServer && document.addEventListener) {
     return function(element, event, handler) {
       if (element && event && handler) {
         element.addEventListener(event, handler, false);
@@ -37,7 +39,7 @@ export const on = (function() {
 
 /* istanbul ignore next */
 export const off = (function() {
-  if (document.removeEventListener) {
+  if (!isServer && document.removeEventListener) {
     return function(element, event, handler) {
       if (element && event) {
         element.removeEventListener(event, handler, false);
@@ -121,6 +123,7 @@ export function removeClass(el, cls) {
 export const getStyle =
   ieVersion < 9
     ? function(element, styleName) {
+        if (isServer) return;
         if (!element || !styleName) return null;
         styleName = camelCase(styleName);
         if (styleName === "float") {
@@ -144,6 +147,7 @@ export const getStyle =
         }
       }
     : function(element, styleName) {
+        if (isServer) return;
         if (!element || !styleName) return null;
         styleName = camelCase(styleName);
         if (styleName === "float") {
@@ -182,6 +186,8 @@ export function setStyle(element, styleName, value) {
 }
 
 export const isScroll = (el, vertical) => {
+  if (isServer) return;
+
   const determinedDirection = vertical !== null || vertical !== undefined;
   const overflow = determinedDirection
     ? vertical
@@ -193,6 +199,8 @@ export const isScroll = (el, vertical) => {
 };
 
 export const getScrollContainer = (el, vertical) => {
+  if (isServer) return;
+
   let parent = el;
   while (parent) {
     if ([window, document, document.documentElement].includes(parent)) {
@@ -208,7 +216,7 @@ export const getScrollContainer = (el, vertical) => {
 };
 
 export const isInContainer = (el, container) => {
-  if (!el || !container) return false;
+  if (isServer || !el || !container) return false;
 
   const elRect = el.getBoundingClientRect();
   let containerRect;

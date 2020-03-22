@@ -1,7 +1,7 @@
 module.exports = {
-  title: "vue-el-loading",
-  description: "vue-el-loading指令",
-  base: "/vue-el-loading/",
+  title: "vue2-el-loading",
+  description: "vue2-el-loading指令",
+  base: "/vue2-el-loading/",
   themeConfig: {
     nav: [{ text: "首页", link: "/index.html" }]
   },
