@@ -7,7 +7,7 @@
 
 ## :popcorn: 安装
 
-`npm run vue2-el-loading --save-dev`
+`npm i vue2-el-loading --save-dev`
 
 ## :zap:引入
 

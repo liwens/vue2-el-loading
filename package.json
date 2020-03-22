@@ -1,6 +1,6 @@
 {
   "name": "vue2-el-loading",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": ":fire: Element loading directive based on vue2.x  / 基于 vue2.x的loading 指令",
   "private": false,
   "main": "dist/vue2-el-loading.min.js",
@@ -9,7 +9,8 @@
     "doc:dev": "vuepress dev docs",
     "doc:build": "vuepress build docs",
     "doc:pub": "sh deploy.sh",
-    "build": "dio"
+    "build": "dio",
+    "publish": "npm run publish"
   },
   "keywords": [
     "vue-loading",
