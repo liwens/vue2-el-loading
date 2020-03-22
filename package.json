@@ -1,0 +1,33 @@
+{
+  "name": "vue2-el-loading",
+  "version": "1.0.0",
+  "description": "xx",
+  "private": false,
+  "main": "dist/vue2-el-loading.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc:dev": "vuepress dev docs",
+    "doc:build": "vuepress build docs",
+    "doc:pub": "sh deploy.sh",
+    "build": "dio"
+  },
+  "keywords": [
+    "vue-loading",
+    "v-loading",
+    "vue",
+    "vue-element-loading",
+    "vue-el-loading",
+    "loading-directive"
+  ],
+  "author": "liwens",
+  "license": "MIT",
+  "devDependencies": {
+    "dio-bundler": "^0.6.0"
+  },
+  "dioConfig": {
+    "input": "src/index.js"
+  },
+  "dependencies": {
+    "vant": "^2.5.7"
+  }
+}
