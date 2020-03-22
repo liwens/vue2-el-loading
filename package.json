@@ -1,7 +1,7 @@
 {
   "name": "vue2-el-loading",
   "version": "1.0.0",
-  "description": "xx",
+  "description": ":fire: Element loading directive based on vue2.x  / 基于 vue2.x的loading 指令",
   "private": false,
   "main": "dist/vue2-el-loading.min.js",
   "scripts": {
